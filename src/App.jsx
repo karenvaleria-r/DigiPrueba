@@ -1,5 +1,5 @@
 // src/App.jsx
-import React from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import PersonalDataForm from "./components/PersonalDataForm";
 import NextButton from "./components/NextButton";

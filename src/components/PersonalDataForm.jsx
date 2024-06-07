@@ -1,8 +1,29 @@
-// src/components/PersonalDataForm.jsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./PersonalDataForm.css";
 
 const PersonalDataForm = () => {
+  // Estados para las contraseñas y el mensaje de error
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    // Si ambos campos de contraseña están llenos y no coinciden, se establece el mensaje de error
+    if (password && confirmPassword && password !== confirmPassword) {
+      setError("Las contraseñas no coinciden");
+    } else {
+      setError("");
+    }
+  }, [password, confirmPassword]);
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
   return (
     <div className="DatosPersonalesForm">
       <div className="DatosPersonales">Datos Personales</div>
@@ -26,7 +47,12 @@ const PersonalDataForm = () => {
           </div>
           <div className="form-group contrasena">
             <label className="Contrasena">Contraseña*</label>
-            <input type="password" className="form-control Rectangulo5" />
+            <input
+              type="password"
+              className="form-control Rectangulo5"
+              value={password}
+              onChange={handlePasswordChange}
+            />
           </div>
           <div className="DatosContrasena">
             Debe tener:
@@ -56,8 +82,14 @@ const PersonalDataForm = () => {
           </div>
           <div className="form-group confirme-contrasena">
             <label className="ConfirmeContrasena">Confirme Contraseña*</label>
-            <input type="password" className="form-control Rectangulo9" />
+            <input
+              type="password"
+              className="form-control Rectangulo9"
+              value={confirmPassword}
+              onChange={handleConfirmPasswordChange}
+            />
           </div>
+          {error && <p style={{ color: "red" }}>{error}</p>}
         </div>
       </div>
     </div>
