@@ -22,7 +22,6 @@ function App() {
         <div className="col-md-9 main-content">
           <Header />
           <PersonalDataForm />
-          <NextButton />
         </div>
       </div>
     </div>

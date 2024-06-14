@@ -1,7 +1,42 @@
-.DatosPersonalesForm {
+.DatosPersonales {
   padding: 30px;
 }
-.DatosPersonalesForm .DatosPersonales {
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+  margin-left: 40px;
+}
+
+/** CHECK ERROR CONTRASEÑA **/
+.error-message {
+  color: red;
+  font-size: 0.875em;
+  margin-top: 5px;
+}
+
+
+.DatosContrasena div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.check {
+  margin-left: 10px;
+}
+
+.check.green {
+  color: green;
+}
+
+.check.red {
+  color: red;
+}
+
+
+
+.DatosPersonales .tit {
   font-size: 24px;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
@@ -9,19 +44,19 @@
   padding-left: 40px;
 }
 
-.DatosPersonalesForm .form-group label {
+.DatosPersonales .form-group label {
   font-size: 15px;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   color: black;
   padding-left: 40px;
-  align-items: center; /**/
-  flex-direction: row;/**/
+  align-items: center; /* */
+  flex-direction: row; /* */
   white-space: nowrap;
   margin-right: 600px;
 }
 
-.DatosPersonalesForm .form-control {
+.DatosPersonales .form-control {
   background: rgba(170, 217, 217, 0.19);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset;
   border-radius: 80px;
@@ -29,7 +64,7 @@
   margin-left: 40px;
 }
 
-.DatosPersonalesForm .DatosContrasena {
+.DatosPersonales .DatosContrasena {
   font-size: 15px;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
@@ -39,60 +74,59 @@
   padding-left: 40px;
 }
 
-
 /* Tablet Styles */
 @media (max-width: 768px) {
-  .DatosPersonalesForm {
+  .DatosPersonales {
     padding: 20px;
   }
 
-  .DatosPersonalesForm .DatosPersonales {
+  .DatosPersonales .tit {
     font-size: 20px;
     padding-left: 20px;
   }
 
-  .DatosPersonalesForm .form-group {
+  .DatosPersonales .form-group {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .DatosPersonalesForm .form-group label {
+  .DatosPersonales .form-group label {
     padding-left: 0;
     margin-right: 0;
-    width: auto; 
+    width: auto;
     margin-bottom: 5px;
   }
 
-  .DatosPersonalesForm .form-control {
+  .DatosPersonales .form-control {
     width: 100%;
     margin-left: 0;
   }
 
-  .DatosPersonalesForm .DatosContrasena {
+  .DatosPersonales .DatosContrasena {
     padding-left: 0;
   }
 }
 
 /* Mobile Styles */
 @media (max-width: 480px) {
-  .DatosPersonalesForm {
+  .DatosPersonales {
     padding: 10px;
   }
 
-  .DatosPersonalesForm .DatosPersonales {
+  .DatosPersonales .tit {
     font-size: 18px;
     padding-left: 10px;
   }
 
-  .DatosPersonalesForm .form-group label {
+  .DatosPersonales .form-group label {
     font-size: 14px;
   }
 
-  .DatosPersonalesForm .form-control {
+  .DatosPersonales .form-control {
     padding: 8px 15px;
   }
 
-  .DatosPersonalesForm .DatosContrasena {
+  .DatosPersonales .DatosContrasena {
     font-size: 14px;
     padding-left: 10px;
   }
