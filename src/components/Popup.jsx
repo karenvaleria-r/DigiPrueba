@@ -1,7 +1,7 @@
 import "./Popup.css";
 import React, { Component } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-
+import LogoNegro from '../components/img/LogoNegro.png'
 class Popup extends React.Component {
   state = {
     abierto: false,
@@ -31,8 +31,12 @@ class Popup extends React.Component {
 
           <ModalBody>
             Felicidades, ya eres parte de DigitAll Connect
-                    
-                </ModalBody> 
+            <img
+              src={LogoNegro}
+              alt="LogoNegro"
+              style={{ width: "50%", marginTop: "20px"}}
+            />
+          </ModalBody>
 
           <ModalFooter>
             <Button className="BOTONOPCI">Volver al Inicio</Button>

@@ -7,6 +7,9 @@ const PersonalDataForm = () => {
   const [contrasena, setContrasena] = useState("");
   const [confirmarContrasena, setConfirmarContrasena] = useState("");
   const [errorConfirmarContrasena, setErrorConfirmarContrasena] = useState("");
+  const [descripcionPyme, setDescripcionPyme] = useState("");
+  const [charCount, setCharCount] = useState(0);
+  const maxChars = 2000;
 
   const handleContrasenaChange = (e) => {
     const value = e.target.value;
@@ -23,8 +26,34 @@ const PersonalDataForm = () => {
     }
   };
 
+  const handleDescripcionChange = (e) => {
+    const value = e.target.value;
+    if (value.length <= maxChars) {
+      setDescripcionPyme(value);
+      setCharCount(value.length);
+    }
+  };
+
   const hasUpperCase = /[A-Z]/.test(contrasena);
   const hasMinLength = contrasena.length >= 8;
+
+  const [selectedAreas, setSelectedAreas] = useState([]);
+  const [otherArea, setOtherArea] = useState("");
+
+  const areas = [
+    "Postulación a Fondos estatales",
+    "Gestión de Redes sociales",
+    "Programación web",
+    "Marketing digital",
+  ];
+
+  const toggleSelection = (area) => {
+    setSelectedAreas((prevState) =>
+      prevState.includes(area)
+        ? prevState.filter((item) => item !== area)
+        : [...prevState, area]
+    );
+  };
 
   return (
     <article>
@@ -191,40 +220,76 @@ const PersonalDataForm = () => {
         <div className="row">
           <div className="col-md-6">
             <div className="form-group">
-              <label htmlFor="nombreCompleto" className="NombreCompleto">
-                Área de Mejora*
+              <label htmlFor="nombrePyme" className="NombrePyme">
+                Nombre Pyme*
               </label>
-              <select id="genero" className="form-control Rectangulo8">
-                <option value="" disabled selected>
-                  Seleccione su principal área de Mejora
-                </option>
-                <option value="RedesSociales">Redes Sociales</option>
-                <option value="MarketingDigital">Marketing Digital</option>
-                <option value="PaginasWeb">Páginas web</option>
-                <option value="Otro">Otro</option>
-              </select>
+              <input
+                type="text"
+                id="nombrePyme"
+                className="form-control Rectangulo2"
+              />
+            </div>
+            <div className="form-group">
+              <label className="AreaMejora">
+                Área de Mejora* <br /> (Seleccione una o más alternativas)
+              </label>
+              <div className="button-grid">
+                {areas.map((area) => (
+                  <button
+                    key={area}
+                    className={`btn-custom ${
+                      selectedAreas.includes(area) ? "selected" : ""
+                    }`}
+                    onClick={() => toggleSelection(area)}
+                  >
+                    {area}
+                  </button>
+                ))}
+                <button
+                  className={`btn-custom ${
+                    selectedAreas.includes("Otro") ? "selected" : ""
+                  }`}
+                  onClick={() => toggleSelection("Otro")}
+                >
+                  Otro
+                </button>
+              </div>
+              {selectedAreas.includes("Otro") && (
+                <div className="form-group">
+                  <label className="Otro">Otro (especifique)</label>
+                  <input
+                    type="text"
+                    className="form-control Rectangulo5"
+                    value={otherArea}
+                    onChange={(e) => setOtherArea(e.target.value)}
+                  />
+                </div>
+              )}
             </div>
             <br />
-
-            <br />
             <div className="form-group">
-              <label htmlFor="correo" className="Correo">
-                Descripción (Describe en un máximo de 2000 carácteres tu Pyme)*
+              <label htmlFor="descripcionPyme" className="DescripcionPyme">
+                Descripción (Describe en un máximo de 2000 caracteres tu Pyme)*
               </label>
               <textarea
                 type="text"
-                id="correo"
+                id="descripcionPyme"
                 className="form-control Rectangulo7 TEXTA"
+                value={descripcionPyme}
+                onChange={handleDescripcionChange}
               />
+              <div className="char-count">
+                {charCount}/{maxChars} caracteres utilizados
+              </div>
             </div>
           </div>
           <div className="col-md-6">
             <div className="form-group">
-              <label htmlFor="genero" className="Genero">
+              <label htmlFor="fotoPerfilPyme" className="FotoPerfilPyme">
                 Foto De Perfil Pyme*
               </label>
               <br />
-              <FotoPerfil />
+              <FotoPerfil id="SubirArchivo" />
             </div>
           </div>
         </div>
@@ -233,5 +298,4 @@ const PersonalDataForm = () => {
     </article>
   );
 };
-
 export default PersonalDataForm;
